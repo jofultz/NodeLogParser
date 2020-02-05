@@ -10,6 +10,13 @@
       "cardinality": "many",
       "consumerGroup": "$Default",
       "dataType": "string"
+    },
+    {
+      "type": "eventHub",
+      "name": "outputEventHubMessage",
+      "eventHubName": "clean-logs",
+      "connection": "outputEventHub",
+      "direction": "out"
     }
   ]
  }

@@ -6,10 +6,13 @@ module.exports = async function (context, eventHubMessages) {
         try{
           context.log(`New message: ${message}`);
           var processedItems = ProcessMessage(message);
+          context.bindings.outputEventHubMessage = [];
 
           //foreach not a function error so converted to standard for()
           for(let eventIndex=0; eventIndex < processedItems.length; eventIndex++)
           {
+            context.bindings.outputEventHubMessage.push(processedItems[eventIndex]);
+            
             context.log('CEF Event: ' + processedItems[eventIndex]);
           }
         }
@@ -18,6 +21,7 @@ module.exports = async function (context, eventHubMessages) {
           context.log(err);
         }
     });
+    context.done();
 };
 
 
